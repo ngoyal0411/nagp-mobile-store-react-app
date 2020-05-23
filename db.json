@@ -1,0 +1,104 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "deviceName": "Redmi 8(Onyx Black, 64 GB)",
+      "price": 9299,
+      "color": "Black",
+      "specifications": "12MP Rear Camera | 8MP Front Camera | 5000 mAh Battery, Qualcomm Snapdragon 439 Processor",
+      "ram": "4 GB",
+      "storage": "64 GB",
+      "screenDesc": "15.8 cm(6.22 inch) HD+ Display"
+    },
+    {
+      "id": 2,
+      "deviceName": "Realme 6 Pro(Lightning Blue,64 GB)",
+      "price": 17999,
+      "color": "Blue",
+      "specifications": "64MP+12MP+8MP+2MP Rear Camera | 16MP+8MP Front Camera | 4300 mAh Battery",
+      "ram": "6 GB",
+      "storage": "64 GB",
+      "screenDesc": "16.67 cm(6.6 inch) FULL HD+ Display"
+    },
+    {
+      "id": 3,
+      "deviceName": "Apple iPhone 7(Black,32 GB)",
+      "price": 29499,
+      "color": "Black",
+      "specifications": "12MP Rear Camera | 7MP Front Camera | iOS 13 Compatible",
+      "ram": "2 GB",
+      "storage": "32 GB",
+      "screenDesc": "11.94 cm(4.7 inch) Retina HD Display"
+    },
+    {
+      "id": 4,
+      "deviceName": "Samsung Galaxy S9 Plus(Lilac Purple,64 GB)",
+      "price": 29999,
+      "color": "Purple",
+      "specifications": "12MP+12MP Rear Camera | 8MP Front Camera | 3500 mAh Battery, Exynos 9810 Processor",
+      "ram": "6 GB",
+      "storage": "64 GB",
+      "screenDesc": "15.75 cm(6.2 inch)Quad HD+ Display"
+    },
+    {
+      "id": 5,
+      "deviceName": "Google Pixel 3(Not Pink,128 GB)",
+      "price": 62199,
+      "color": "Pink",
+      "specifications": "12.2MP Rear Camera | 8MP+8MP Front Camera | 2915 mAh Battery, Qualcomm Snapdragon 845 Processor",
+      "ram": "4 GB",
+      "storage": "128 GB",
+      "screenDesc": "13.97 cm(5.5 inch) Full HD+ Display"
+    },
+    {
+      "id": 6,
+      "deviceName": "OPPO A7(Glaring Gold, 64 GB)",
+      "price": 10990,
+      "color": "Gold",
+      "specifications": "13MP+2MP Rear Camera | 16MP Front Camera | 4230 mAh Battery, Qualcomm Snapdragon 450 Processor",
+      "ram": "4 GB",
+      "storage": "64 GB",
+      "screenDesc": "15.75 cm(6.2 inch) HD+ Display"
+    },
+    {
+      "id": 7,
+      "deviceName": "Vivo V5(Crown gold, 32 GB)",
+      "price": 18980,
+      "color": "Gold",
+      "specifications": "13MP Rear Camera | 20MP Front Camera | 3000 mAh Battery, Octa Core 1.5 GHz Processor",
+      "ram": "4 GB",
+      "storage": "32 GB",
+      "screenDesc": "13.97 cm(5.5 inch) HD Display"
+    },
+    {
+      "id": 8,
+      "deviceName": "Redmi Note 4( Black, 64 GB)",
+      "price": 12999,
+      "color": "Black",
+      "specifications": "13MP Rear Camera | 5MP Front Camera | 4100 mAh Battery, Qualcomm Snapdragon 625 Processor",
+      "ram": "4 GB",
+      "storage": "64 GB",
+      "screenDesc": "13.97 cm(5.5 inch) HD+ Display"
+    },
+    {
+      "id": 9,
+      "deviceName": "HTC Desire 626(White Birch, 16 GB)",
+      "price": 9599,
+      "color": "White",
+      "specifications": "13MP Rear Camera | 5MP Front Camera | 2000 mAh Battery, Octa Core 1.3 GHz Processor",
+      "ram": "2 GB",
+      "storage": "16 GB",
+      "screenDesc": "12.7 cm(5 inch) HD Display"
+    },
+    {
+      "id": 10,
+      "deviceName": "Redmi 4(Gold, 32 GB)",
+      "price": 8999,
+      "color": "Gold",
+      "specifications": "13MP Rear Camera | 5MP Front Camera | 4100 mAh Battery, Snapdragon 435 Processor",
+      "ram": "3 GB",
+      "storage": "32 GB",
+      "screenDesc": "12.7 cm(5 inch) HD Display"
+    }
+  ]
+}
