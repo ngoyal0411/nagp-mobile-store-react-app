@@ -6,10 +6,10 @@ import {
 } from "./action-types/cartActionTypes";
 
 //add cart action
-export const addToCart = (id) => {
+export const addToCart = (cartItem) => {
   return {
     type: ADD_TO_CART,
-    id,
+    cartItem,
   };
 };
 //remove item action

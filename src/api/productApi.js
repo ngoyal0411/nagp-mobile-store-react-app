@@ -12,8 +12,3 @@ export function getFilteredProducts(searchValue) {
     .catch(handleError);
 }
 
-export function sortProductsBasedOnPrice(sortingOrder) {
-  return fetch(`${baseURL}?_sort=price&_order=${sortingOrder}`)
-    .then(handleResponse)
-    .catch(handleError);
-}

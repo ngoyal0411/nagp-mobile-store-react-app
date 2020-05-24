@@ -77,7 +77,7 @@ function ManageCoursePage({
   return authors.length === 0 || courses.length === 0 ? (
     <Spinner />
   ) : (
-    <CourseForm
+    <LoginForm
       course={course}
       errors={errors}
       authors={authors}

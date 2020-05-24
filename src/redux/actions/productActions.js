@@ -10,6 +10,7 @@ export function searchProductsSuccess(products) {
 }
 
 export function sortProductsSuccess(products) {
+  debugger;
   return { type: types.SORT_PRODUCTS_SUCCESS, products };
 }
 
@@ -21,7 +22,6 @@ export function loadProducts() {
         dispatch(loadProductsSuccess(products));
       })
       .catch((error) => {
-        //dispatch(apiCallError(error));
         throw error;
       });
   };
@@ -35,22 +35,17 @@ export function searchProducts(searchValue) {
         dispatch(searchProductsSuccess(products));
       })
       .catch((error) => {
-        //dispatch(apiCallError(error));
         throw error;
       });
   };
 }
 
-export function sortProducts(order) {
+export function sortProducts(products) {
+  debugger;
   return function (dispatch) {
-    return productApi
-      .sortProductsBasedOnPrice(order)
-      .then((products) => {
         dispatch(sortProductsSuccess(products));
-      })
-      .catch((error) => {
-        //dispatch(apiCallError(error));
-        throw error;
-      });
+      
   };
 }
+
+

@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import * as productActions from "../../redux/actions/productActions";
+import { addToCart } from "../../redux/actions/cartActions";
 import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 import ProductList from "./ProductList";
@@ -43,25 +44,19 @@ class ProductsPage extends React.Component {
     });
   };
 
-  sortingBasedOnPrice = async (order) => {
+  sortingBasedOnPrice = (order) => {
     //debugger;
     try {
-      await this.props.actions.sortProducts(order);
+      const sortedProducts = [...this.props.products].sort((a, b) => {
+        return order === "asc" ? a.price - b.price : b.price - a.price;
+      });
+      this.props.actions.sortProductsSuccess(sortedProducts);
     } catch (error) {
-      toast.error("Something Went wrong" + error.message, {
+      toast.error("Something Went wrong " + error.message, {
         autoClose: false,
       });
     }
   };
-
-  //   handleDeleteCourse = async course => {
-  //     toast.success("Course deleted");
-  //     try {
-  //       await this.props.actions.deleteCourse(course);
-  //     } catch (error) {
-  //       toast.error("Delete failed. " + error.message, { autoClose: false });
-  //     }
-  //   };
 
   render() {
     return (
@@ -72,7 +67,11 @@ class ProductsPage extends React.Component {
         ></SortProducts>
         <Search search={this.search} />
         {this.state.searchResultFound ? (
-          <ProductList products={this.props.products} />
+          <ProductList
+            props={this.props}
+            products={this.props.products}
+            history={this.props.history}
+          />
         ) : (
           <div className="no-data-div">
             <p>No Data Availabe</p>
@@ -86,6 +85,7 @@ class ProductsPage extends React.Component {
 ProductsPage.propTypes = {
   products: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -103,7 +103,10 @@ function mapDispatchToProps(dispatch) {
         productActions.searchProducts,
         dispatch
       ),
-      sortProducts: bindActionCreators(productActions.sortProducts, dispatch),
+      sortProductsSuccess: bindActionCreators(
+        productActions.sortProductsSuccess,
+        dispatch
+      ),
     },
   };
 }

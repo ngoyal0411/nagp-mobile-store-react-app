@@ -14,6 +14,8 @@ const SortProducts = (props) => {
       props.sortingBasedOnPrice("asc");
     } else if (e.target.value === "high-low") {
       props.sortingBasedOnPrice("desc");
+    } else {
+      props.sortingBasedOnPrice(""); //if user selects choose option from dropdown
     }
   };
 
