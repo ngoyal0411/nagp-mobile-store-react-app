@@ -1,39 +1,83 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import {MDBIcon} from 'mdbreact'
-import AddItemToCart from "../cart/AddItemToCart";
-import CartList from '../cart/CartList'
-function Cart({cartItems}){
+import React from "react";
+import { connect } from "react-redux";
+import CartColumns from "./CartColumns";
+import EmptyCart from "./EmptyCart";
+import CartList from "../cart/CartList";
+import PropTypes from "prop-types";
+import CartCheckout from "./CartCheckout";
+import {
+  removeItem,
+  subtractQuantity,
+  increaseQuantity,
+  clearCart,
+} from "../../redux/actions/cartActions";
 
-    return(
-   
-            <div className="container">
-                <div className="cart">
-                    <h5></h5>
-                    <ul className="collection">
-         {cartItems.length ? (
+function Cart({
+  cartItems,
+  removeItem,
+  subQuantity,
+  incQuantity,
+  clearCart,
+  cartTotal,
+}) {
+  return (
+    <section>
+      {cartItems.length ? (
+        <>
+          <div className="col-10 mx-auto text-center text-slanted text-blue my-5 ">
+            <h1>Your Cart</h1>
+          </div>
+          <CartColumns />
           <CartList
             cartItems={cartItems}
+            removeItem={removeItem}
+            subQuantity={subQuantity}
+            incQuantity={incQuantity}
           />
-        ) : (
-          <div className="no-data-div">
-            <p>Your Cart is Empty</p>
-          </div>
-        )}
-                    </ul>
-                </div>  
-            </div>
-       )
+          <CartCheckout cartTotal={cartTotal} clearCart={clearCart} />
+        </>
+      ) : (
+        <EmptyCart />
+      )}
+    </section>
+  );
 }
 
-const mapStateToProps = (state)=>{
-    return{
-        cartItems: state.cart
-    }
+Cart.propTypes = {
+  cartItems: PropTypes.array.isRequired,
+  removeItem: PropTypes.func.isRequired,
+  subQuantity: PropTypes.func.isRequired,
+  incQuantity: PropTypes.func.isRequired,
+  clearCart: PropTypes.func.isRequired,
+};
+export function getCartTotalAmount(cartItems) {
+  let total = 0;
+  cartItems.map((product) => (total += product.subTotal));
+  return total;
 }
+const mapStateToProps = (state) => {
+  const cartTotal = state.cart.length > 0 ? getCartTotalAmount(state.cart) : 0;
+  return {
+    cartItems: state.cart,
+    cartTotal,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  debugger;
+  return {
+    removeItem: (id) => {
+      dispatch(removeItem(id));
+    },
+    subQuantity: (id) => {
+      dispatch(subtractQuantity(id));
+    },
+    incQuantity: (id) => {
+      dispatch(increaseQuantity(id));
+    },
+    clearCart: (id) => {
+      dispatch(clearCart(id));
+    },
+  };
+};
 
-export default connect(mapStateToProps)(Cart)
-
-
-
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);

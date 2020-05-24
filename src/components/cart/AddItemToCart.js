@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { addToCart } from "../../redux/actions/cartActions";
 
 function AddItemToCart(props) {
-  const { cartItem, addToCart,cart } = props;
+  const { cartItem, addToCart } = props;
   const addItemToCart = (event) => {
     debugger;
 // if(cart.length>0){

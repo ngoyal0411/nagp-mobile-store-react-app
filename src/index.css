@@ -1,3 +1,9 @@
+:root {
+  --mainDark: #232528;
+  --mainWhite: #ffffff;
+  --mainRed: #ff0000;
+}
+
 body {
   margin: 0px 0px;
   padding: 0px 0px;
@@ -48,4 +54,27 @@ nav {
 .sort-div {
   margin-bottom: 0px;
   width: 20%;
+}
+
+.btn-black {
+  background: transparent !important;
+  background-color: transparent;
+  text-transform: capitalize;
+  text-align: center;
+  color: var(--mainDark);
+  border-radius: 0 !important;
+  border: 0.1rem solid var(--mainDark) !important;
+}
+.btn-black:hover {
+  background: var(--mainDark) !important;
+  color: var(--mainWhite) !important;
+}
+
+.cart-icon {
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: var(--mainRed);
+}
+.danger-text {
+  color: red !important;
 }
