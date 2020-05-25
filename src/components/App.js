@@ -6,8 +6,8 @@ import ProductsPage from "./products/ProductsPage";
 import ProductDetail from "./products/ProductDetail";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import LoginForm from "./login/LoginForm"
-import Cart from "./cart/Cart"
+import Login from "./login/Login";
+import Cart from "./cart/Cart";
 
 function App() {
   return (
@@ -16,10 +16,9 @@ function App() {
       <Switch>
         <Route exact path="/" component={ProductsPage} />
         <Route path="/product/:id" component={ProductDetail} />
-        <Route path="/login" component={LoginForm} />
+        <Route path="/login" component={Login} />
         <Route path="/cart" component={Cart} />
-        {/* <Route path="/course/:slug" component={ManageCoursePage} />
-        <Route path="/course" component={ManageCoursePage} /> */}
+        <Route exact path="/home" component={ProductsPage} />
         <Route component={PageNotFound}></Route>
       </Switch>
       <ToastContainer autoClose={3000} hideProgressBar></ToastContainer>

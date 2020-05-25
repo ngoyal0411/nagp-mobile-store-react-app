@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { connect } from "react-redux";
 import CartColumns from "./CartColumns";
 import EmptyCart from "./EmptyCart";
@@ -11,6 +11,8 @@ import {
   increaseQuantity,
   clearCart,
 } from "../../redux/actions/cartActions";
+import { toast } from "react-toastify";
+import { UserContext } from "../../context/context";
 
 function Cart({
   cartItems,
@@ -19,7 +21,19 @@ function Cart({
   incQuantity,
   clearCart,
   cartTotal,
+  history,
 }) {
+  const [user] = useContext(UserContext);
+  const placeOrder = () => {
+    if (user.isLoggedIn) {
+      debugger;
+      clearCart();
+      toast.success("Order Placed Successfully!!", { autoClose: false });
+      history.push("/");
+    } else {
+      history.push("/login");
+    }
+  };
   return (
     <section>
       {cartItems.length ? (
@@ -34,7 +48,11 @@ function Cart({
             subQuantity={subQuantity}
             incQuantity={incQuantity}
           />
-          <CartCheckout cartTotal={cartTotal} clearCart={clearCart} />
+          <CartCheckout
+            cartTotal={cartTotal}
+            clearCart={clearCart}
+            placeOrder={placeOrder}
+          />
         </>
       ) : (
         <EmptyCart />
@@ -49,6 +67,7 @@ Cart.propTypes = {
   subQuantity: PropTypes.func.isRequired,
   incQuantity: PropTypes.func.isRequired,
   clearCart: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
 };
 export function getCartTotalAmount(cartItems) {
   let total = 0;
@@ -74,8 +93,8 @@ const mapDispatchToProps = (dispatch) => {
     incQuantity: (id) => {
       dispatch(increaseQuantity(id));
     },
-    clearCart: (id) => {
-      dispatch(clearCart(id));
+    clearCart: () => {
+      dispatch(clearCart());
     },
   };
 };

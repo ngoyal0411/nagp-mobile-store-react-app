@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../context/context";
+import { toast } from "react-toastify";
+import LogoutDropdown from "./LogoutDropdown";
 
-const Navbar = () => {
+const Navbar = (props) => {
+  const [user, setUserState] = useContext(UserContext);
+  const logout = () => {
+    toast.info("Log out successfully!!");
+    setUserState((prevUser) => ({
+      ...prevUser,
+      isLoggedIn: false,
+    }));
+  };
+
   return (
     <nav className="nav-wrapper">
       <div className="container">
@@ -10,9 +22,18 @@ const Navbar = () => {
         </Link>
 
         <ul className="right">
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
+          {user && !user.isLoggedIn ? (
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+          ) : (
+            <li>
+              <LogoutDropdown
+                username={user.username}
+                logout={logout}
+              ></LogoutDropdown>
+            </li>
+          )}
           <li>
             <Link to="/cart">
               <i className="material-icons">shopping_cart</i>

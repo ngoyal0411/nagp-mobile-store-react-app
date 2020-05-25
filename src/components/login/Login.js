@@ -1,134 +1,87 @@
-import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
-import { loadCourses, saveCourse } from "../../redux/actions/courseActions";
-import { loadAuthors } from "../../redux/actions/authorActions";
-import PropTypes from "prop-types";
-import CourseForm from "./CourseForm";
-import newCourse from "../../../tools/mockData";
-import Spinner from "../common/Spinner";
+import React, { useState, useContext, useEffect } from "react";
+import LoginForm from "./LoginForm";
 import { toast } from "react-toastify";
+import { UserContext } from "../../context/context";
+import { Container, Segment } from "semantic-ui-react";
 
-
-
-function ManageCoursePage({
-  courses,
-  authors,
-  loadAuthors,
-  loadCourses,
-  saveCourse,
-  history,
-  ...props
-}) {
-  const [course, setCourse] = useState({ ...props.course });
+function Login(props) {
+  const [user, setUserState] = useContext(UserContext);
+  const [currentUser, setCurrentUser] = useState({
+    username: "",
+    password: "",
+  });
   const [errors, setErrors] = useState({});
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
-    if (courses.length === 0) {
-      loadCourses().catch((error) => {
-        alert("Loading courses failed" + error);
-      });
+    if (!formIsValid()) {
+      setSaving(true);
+      return;
     } else {
-      setCourse({ ...props.course });
+      setSaving(false);
     }
-    if (authors.length === 0) {
-      loadAuthors().catch((error) => {
-        alert("Loading authors failed" + error);
-      });
-    }
-  }, [props.course]);
+  }, [currentUser]);
 
   function handleChange(event) {
     const { name, value } = event.target;
-    setCourse((prevCourse) => ({
-      ...prevCourse,
-      [name]: name === "authorId" ? parseInt(value, 10) : value,
+    setCurrentUser((prevUser) => ({
+      ...prevUser,
+      [name]: value,
     }));
   }
 
   function formIsValid() {
-    const { title, authorId, category } = course;
+    const { username, password } = currentUser;
     const errors = {};
 
-    if (!title) errors.title = "Title is required.";
-    if (!authorId) errors.author = "Author is required";
-    if (!category) errors.category = "Category is required";
+    if (!username) errors.username = "User Name is required.";
+    if (!password) errors.password = "Password is required";
+    if (password.length > 0 && password.length < 8) {
+      errors.password = "Password must contain atleast 8 characters";
+    }
 
     setErrors(errors);
     // Form is valid if the errors object still has no properties
     return Object.keys(errors).length === 0;
   }
 
-  function handleSave(event) {
+  function handleLogin(event) {
     event.preventDefault();
-    if (!formIsValid()) return;
-    setSaving(true);
-    saveCourse(course)
-      .then(() => {
-        toast.success("Course saved.");
-        history.push("/courses");
-      })
-      .catch((error) => {
-        setSaving(false);
-        setErrors({ onSave: error.message });
-      });
+    const { username, password } = currentUser;
+    if (username === user.username || password === user.password) {
+      setUserState((prevUser) => ({
+        ...prevUser,
+        isLoggedIn: true,
+      }));
+      console.log(  props.history);
+      toast.success("Logged In successfully");
+      props.history.push("/");
+    } else {
+      toast.error("Invalid Credentials!!");
+    }
   }
 
-  return authors.length === 0 || courses.length === 0 ? (
-    <Spinner />
-  ) : (
-    <LoginForm
-      course={course}
-      errors={errors}
-      authors={authors}
-      onChange={handleChange}
-      onSave={handleSave}
-      saving={saving}
-    />
+  return (
+    <Container>
+      <Segment
+        style={{
+          margin: "50px",
+          alignItems: "center",
+          position: "flex",
+          zIndex: 1000,
+          color: "gray",
+        }}
+      >
+        <LoginForm
+          user={currentUser}
+          errors={errors}
+          onChange={handleChange}
+          onLoginClick={handleLogin}
+          saving={saving}
+        />
+      </Segment>
+    </Container>
   );
 }
 
-ManageCoursePage.propTypes = {
-  course: PropTypes.object.isRequired,
-  authors: PropTypes.array.isRequired,
-  courses: PropTypes.array.isRequired,
-  loadCourses: PropTypes.func.isRequired,
-  loadAuthors: PropTypes.func.isRequired,
-  saveCourse: PropTypes.func.isRequired,
-  history: PropTypes.object.isRequired,
-};
-
-export function getCourseBySlug(courses, slug) {
-  return courses.find((course) => course.slug === slug) || null;
-}
-
-function mapStateToProps(state, ownProps) {
-  const slug = ownProps.match.params.slug;
-  const course =
-    slug && state.courses.length > 0
-      ? getCourseBySlug(state.courses, slug)
-      : newCourse;
-  //debugger;
-  return {
-    course,
-    courses: state.courses,
-    authors: state.authors,
-  };
-}
-
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     actions: {
-//       loadCourses: bindActionCreators(courseActions.loadCourses, dispatch),
-//       loadAuthors: bindActionCreators(authorActions.loadAuthors, dispatch),
-//     },
-//   };
-// }
-
-const mapDispatchToProps = {
-  loadCourses,
-  loadAuthors,
-  saveCourse,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ManageCoursePage);
+export default Login;

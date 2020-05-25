@@ -1,10 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Button } from "semantic-ui-react";
 import * as CurrencyFormat from "react-currency-format";
 
-export default function CartCheckout(props) {
-  const { cartTotal, clearCart } = props;
+export default function CartCheckout({ placeOrder, cartTotal, clearCart }) {
   return (
     <React.Fragment>
       <div className="container">
@@ -23,25 +21,21 @@ export default function CartCheckout(props) {
             </h5>
             <div>
               {" "}
-              <Link to="/">
-                <Button
-                  basic
-                  onClick={() => clearCart()}
-                  className="btn btn-outLine-danger text-uppercase mb-3 px-5"
-                  negative
-                >
-                  clear cart
-                </Button>
-              </Link>
-              <Link to="/">
-                <Button
-                  onClick={() => clearCart()}
-                  className="btn btn-outLine-danger text-uppercase mb-3 px-5"
-                  color="blue"
-                >
-                  Place Order
-                </Button>
-              </Link>
+              <Button
+                basic
+                onClick={() => clearCart()}
+                className="btn btn-outLine-danger text-uppercase mb-3 px-5"
+                negative
+              >
+                clear cart
+              </Button>
+              <Button
+                onClick={() => placeOrder()}
+                className="btn btn-outLine-danger text-uppercase mb-3 px-5"
+                color="blue"
+              >
+                Place Order
+              </Button>
             </div>
           </div>
         </div>
