@@ -9,17 +9,17 @@ import "./index.js";
 import "./index.css";
 import configureStore from "./redux/configureStore";
 import { Provider as ReduxProvider } from "react-redux";
-import { UserContextProvder } from "./context/context";
+import { UserContextProvider } from "./context/context";
 
 const store = configureStore();
 
 render(
   <ReduxProvider store={store}>
-    <UserContextProvder>
+    <UserContextProvider>
       <Router>
         <App />
       </Router>
-    </UserContextProvder>
+    </UserContextProvider>
   </ReduxProvider>,
   document.getElementById("root")
 );

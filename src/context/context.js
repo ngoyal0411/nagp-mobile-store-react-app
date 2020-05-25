@@ -4,7 +4,7 @@ import React, { useState, createContext } from "react";
 export const UserContext = createContext();
 
 // Create a provider for components to consume and subscribe to changes
-export const UserContextProvder = (props) => {
+export const UserContextProvider = (props) => {
   const [user, setUserState] = useState({
     username: "nishu",
     password: "password",
