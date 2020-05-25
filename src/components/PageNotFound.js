@@ -22,8 +22,10 @@ const PageNotFound = (props) => (
           <h1>page not found</h1>
           <h3>
             the requested url
-            <span className="text-danger">{props.location.pathname}</span> was
-            not found
+            <span className="text-danger page-not-found">
+              {props.location.pathname}
+            </span>{" "}
+            was not found
           </h3>
         </div>
       </div>

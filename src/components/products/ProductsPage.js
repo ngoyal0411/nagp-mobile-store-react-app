@@ -94,12 +94,6 @@ class ProductsPage extends React.Component {
           sortingBasedOnPrice={this.sortingBasedOnPrice}
         ></SortProducts>
         <Search search={this.search} />
-
-        <ProductList
-          props={this.props}
-          products={this.props.products}
-          history={this.props.history}
-        />
         {this.state.searchResultFound ? (
           <>
             {this.props.totalResultCount > 3 ? (
@@ -111,6 +105,11 @@ class ProductsPage extends React.Component {
             ) : (
               ""
             )}
+            <ProductList
+              props={this.props}
+              products={this.props.products}
+              history={this.props.history}
+            />
           </>
         ) : (
           <div className="no-data-div">

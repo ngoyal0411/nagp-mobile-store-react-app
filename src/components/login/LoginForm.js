@@ -36,7 +36,12 @@ const LoginForm = ({
         error={errors.password}
       />
 
-      <button type="submit" disabled={saving} className="btn btn-primary">
+      <button
+        id="login-button"
+        type="submit"
+        disabled={saving}
+        className="btn btn-primary"
+      >
         Login
       </button>
     </form>
