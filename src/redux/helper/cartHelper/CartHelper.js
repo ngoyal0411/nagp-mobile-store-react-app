@@ -36,7 +36,6 @@ export const increaseQuantity = (cartItems, id) => {
 };
 
 export const decreaseQuantity = (cartItems, id) => {
-  debugger;
   const existingCartItem = cartItems.find((item) => item.id === id);
   if (existingCartItem.quantity === 1) {
     return cartItems.filter((item) => item.id !== id);

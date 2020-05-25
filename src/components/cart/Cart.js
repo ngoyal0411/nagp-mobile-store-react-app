@@ -13,6 +13,8 @@ import {
 } from "../../redux/actions/cartActions";
 import { toast } from "react-toastify";
 import { UserContext } from "../../context/context";
+import { Button } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 
 function Cart({
   cartItems,
@@ -26,7 +28,6 @@ function Cart({
   const [user] = useContext(UserContext);
   const placeOrder = () => {
     if (user.isLoggedIn) {
-      debugger;
       clearCart();
       toast.success("Order Placed Successfully!!", { autoClose: false });
       history.push("/");
@@ -38,6 +39,12 @@ function Cart({
     <section>
       {cartItems.length ? (
         <>
+          <br></br>
+          <Link to="/">
+            <Button prime color="blue">
+              Continue Shopping..
+            </Button>
+          </Link>
           <div className="col-10 mx-auto text-center text-slanted text-blue my-5 ">
             <h1>Your Cart</h1>
           </div>
@@ -82,7 +89,6 @@ const mapStateToProps = (state) => {
   };
 };
 const mapDispatchToProps = (dispatch) => {
-  debugger;
   return {
     removeItem: (id) => {
       dispatch(removeItem(id));

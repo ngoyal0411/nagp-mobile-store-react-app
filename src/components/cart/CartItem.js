@@ -8,7 +8,7 @@ export default function CartItem(props) {
     <div className="row my-2 text-capitalize text-center">
       <div className=".col-10 mx-auto col-lg-2">
         <img
-          src="https://react.semantic-ui.com/images/avatar/large/daniel.jpg"
+          src="/img/mobile1.png"
           alt="product"
           style={{ width: "5rem", height: "5erm" }}
           className="img-fluid"

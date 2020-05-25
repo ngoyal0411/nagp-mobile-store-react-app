@@ -8,16 +8,6 @@ const Search = (props) => {
     props.search(e.target.value);
   };
 
-  const resetInputField = () => {
-    setSearchValue("");
-  };
-
-  const callSearchFunction = (e) => {
-    e.preventDefault();
-    props.search(searchValue);
-    resetInputField();
-  };
-
   return (
     <div className="searchDiv">
       <input

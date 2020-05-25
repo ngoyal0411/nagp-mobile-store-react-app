@@ -7,24 +7,12 @@ import AddItemToCart from "../cart/AddItemToCart";
 import * as CurrencyFormat from "react-currency-format";
 
 function ProductDetail({ product }) {
-  // return <h1> {product != null ? product.deviceName : null}</h1>;
   return (
     <div className="container py-5">
-      {/*title */}
-      {/* <div className="row">
-                <div className="col-10 mx-auto text-center text-slanted text-blue my-5">
-                  <h1>{product.deviceName}</h1>
-                </div>
-              </div> */}
-
       <div className="row">
         <div className="col-10 mx-auto col-md-6 my-3">
-          <Image
-            src="https://react.semantic-ui.com/images/avatar/large/daniel.jpg"
-            alt="product"
-          />
+          <Image src="/img/mobile1.png" alt="product" />
         </div>
-        {/* product text */}
         <div className="col-10 mx-auto col-md-6 my-3 text-capitalize">
           <h3 className="text-blue">
             <strong>{product.deviceName}</strong>
@@ -70,8 +58,6 @@ function ProductDetail({ product }) {
           </p>
           <h5 className="text-title">{product.specifications}</h5>
           <br />
-
-          {/* buttons */}
           <div>
             <Link to="/">
               <Button color="blue">Back to products</Button>
@@ -92,16 +78,15 @@ export function getProductById(products, productId) {
   return products.find((product) => product.id === productId) || null;
 }
 function mapStateToProps(state, ownProps) {
-  debugger;
   const productId = parseInt(ownProps.match.params.id, 10);
   const product =
-    productId && state.products.length > 0
-      ? getProductById(state.products, productId)
+    productId && state.products.products.length > 0
+      ? getProductById(state.products.products, productId)
       : null;
 
   return {
     product,
-    products: state.products,
+    products: state.products.products,
   };
 }
 

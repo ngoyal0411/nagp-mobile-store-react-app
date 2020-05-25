@@ -27,11 +27,7 @@ function ProductList(props) {
                 textAlign: "center",
               }}
             >
-              <Image
-                src="https://react.semantic-ui.com/images/avatar/large/daniel.jpg"
-                wrapped
-                ui={false}
-              />
+              <Image src="/img/mobile1.png" wrapped ui={false} />
               <Card.Content>
                 <Card.Header
                   style={{
@@ -75,7 +71,6 @@ function ProductList(props) {
                     cartItem={product}
                     actions={actions}
                   ></AddItemToCart>
-                 
                 </div>
               </Card.Content>
             </Card>

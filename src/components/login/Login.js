@@ -53,7 +53,6 @@ function Login(props) {
         ...prevUser,
         isLoggedIn: true,
       }));
-      console.log(  props.history);
       toast.success("Logged In successfully");
       props.history.push("/");
     } else {

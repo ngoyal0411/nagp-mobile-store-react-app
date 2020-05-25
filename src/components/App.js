@@ -21,7 +21,11 @@ function App() {
         <Route exact path="/home" component={ProductsPage} />
         <Route component={PageNotFound}></Route>
       </Switch>
-      <ToastContainer autoClose={3000} hideProgressBar></ToastContainer>
+      <ToastContainer
+        position={"top-center"}
+        autoClose={3000}
+        hideProgressBar
+      ></ToastContainer>
     </div>
   );
 }

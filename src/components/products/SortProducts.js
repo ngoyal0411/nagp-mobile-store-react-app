@@ -8,7 +8,6 @@ const SortProducts = (props) => {
   const [selectedSortOrder, setSelectedSortOrder] = useState("");
 
   const handleSortingOrderChanges = (e) => {
-    debugger;
     setSelectedSortOrder(e.target.value);
     if (e.target.value === "low-high") {
       props.sortingBasedOnPrice("asc");

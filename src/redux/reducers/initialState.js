@@ -1,5 +1,5 @@
 export default {
   products: [],
   cart: [],
-  apiCallsInProgress: 0,
+  totalResultCount: 0,
 };

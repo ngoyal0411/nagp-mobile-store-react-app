@@ -25,15 +25,7 @@ const cartReducer = (state = initalState.cart, action) => {
   }
   if (action.type === types.CLEAR_CART) {
     return [];
-  }
-
-  //   if (action.type === ADD_SHIPPING) {
-  //     return {
-  //       ...state,
-  //       total: state.total + 6,
-  //     };
-  //   }
-  else {
+  } else {
     return state;
   }
 };

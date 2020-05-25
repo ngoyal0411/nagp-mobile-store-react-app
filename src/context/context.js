@@ -10,7 +10,6 @@ export const UserContextProvider = (props) => {
     password: "password",
     isLoggedIn: false,
   });
-  //const [isLoggedIn, setLoggedInState] = useState(false);
 
   return (
     <UserContext.Provider value={[user, setUserState]}>

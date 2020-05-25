@@ -8,22 +8,8 @@ import { addToCart } from "../../redux/actions/cartActions";
 function AddItemToCart(props) {
   const { cartItem, addToCart } = props;
   const addItemToCart = (event) => {
-    debugger;
-// if(cart.length>0){
-// let existing_item = cart.find((existingProduct) => cartItem.id === existingProduct.id);
-// if(existing_item){
-// existing_item.quantity+=1;
-// addToCart({...existing_item})
-// }
-// else{
-//  addToCart({ ...cartItem,quantity:0 });
-// }
-// }
-// else{
-//   addToCart({ ...cartItem,quantity:0 });
-// }
-   addToCart({ ...cartItem });
-    toast.info("Item added to cart successfully" + cartItem);
+    addToCart({ ...cartItem });
+    toast.info("Item added to cart successfully!!");
   };
   return (
     <Button basic color="red" onClick={addItemToCart}>
